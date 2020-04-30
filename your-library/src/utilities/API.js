@@ -1,5 +1,4 @@
 import axios from "axios";
-import apikey from "./config";
 
 export default {
   // Gets all books
