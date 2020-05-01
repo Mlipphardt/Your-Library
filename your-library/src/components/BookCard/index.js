@@ -5,14 +5,21 @@ function BookCard(props) {
     <div className="book-div card my-4">
       <div className="card-header bg-primary">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-4">
             <h3>{props.title}</h3>
           </div>
-          <div className="col-md-7"></div>
-          <div className="col-md-2">
+          <div className="col-md-5"></div>
+          <div className="col-md-3">
             <button className="btn bg-success view-button">View</button>
-            <button className="btn bg-success save-button">Save</button>
+            <button className="btn bg-success save-button ml-3">Save</button>
           </div>
+        </div>
+        <div className="row">
+          <div className="col-md-3">
+            <p>{props.author}</p>
+          </div>
+          <div className="col-md-3"></div>
+          <div className="col-md-3"></div>
         </div>
       </div>
       <div className="card-body">

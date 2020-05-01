@@ -45,6 +45,7 @@ class Search extends Component {
               title="test"
               description="testy mcTestFace"
               image="you what mate?"
+              author="testMan"
             />
           </div>
           <div className="col-md-1"></div>
