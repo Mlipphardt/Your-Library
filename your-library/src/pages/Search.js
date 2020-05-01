@@ -49,6 +49,7 @@ class Search extends Component {
                 image={book.volumeInfo.imageLinks.smallThumbnail}
                 key={book.id}
                 id={book.id}
+                description={book.volumeInfo.description}
                 author={book.volumeInfo.authors}
               />
             ))}
