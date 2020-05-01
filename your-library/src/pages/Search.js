@@ -9,9 +9,12 @@ class Search extends Component {
   };
 
   componentDidMount = () => {
-    API.googleBooks("Stephen King").then((results) =>
-      console.log(results.data.items)
-    );
+    API.googleBooks("Stephen King").then((results) => {
+      console.log(results.data.items);
+      this.setState({ results: results.data.items });
+      console.log(results.data.items[0].volumeInfo.title);
+      console.log(this.state.results[0].volumeInfo.title);
+    });
   };
 
   render() {
@@ -39,16 +42,17 @@ class Search extends Component {
           <div className="col-md-2"></div>
         </div>
         <div className="row">
-          <div className="col-md-1"></div>
-          <div className="col-md-10">
-            <BookCard
-              title="test"
-              description="testy mcTestFace"
-              image="you what mate?"
-              author="testMan"
-            />
+          <div className="col-md-12">
+            {this.state.results.map((book) => (
+              <BookCard
+                title={book.volumeInfo.title}
+                image={book.volumeInfo.imageLinks.smallThumbnail}
+                key={book.id}
+                id={book.id}
+                author={book.volumeInfo.authors}
+              />
+            ))}
           </div>
-          <div className="col-md-1"></div>
         </div>
       </div>
     );
