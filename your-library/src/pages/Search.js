@@ -9,12 +9,30 @@ class Search extends Component {
   };
 
   componentDidMount = () => {
-    API.googleBooks("Stephen King").then((results) => {
-      console.log(results.data.items);
-      this.setState({ results: results.data.items });
-      console.log(results.data.items[0].volumeInfo.title);
-      console.log(this.state.results[0].volumeInfo.title);
+    this.getBooks("Stephen King");
+  };
+
+  getBooks = (query) => {
+    API.googleBooks(query)
+      .then((results) => {
+        console.log(results);
+        this.setState({ results: results.data.items });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  handleInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
     });
+  };
+
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    if (this.state.query) {
+      this.getBooks(this.state.query);
+    }
   };
 
   render() {
@@ -29,13 +47,20 @@ class Search extends Component {
               </div>
               <input
                 type="text"
+                value={this.state.query}
                 name="query"
                 id="query-input"
                 className="my-3"
                 size="50"
+                onChange={this.handleInputChange}
               />
             </form>
-            <button type="submit" className="btn bg-primary" form="query-form">
+            <button
+              type="submit"
+              className="btn bg-primary"
+              onClick={this.handleFormSubmit}
+              form="query-form"
+            >
               Submit
             </button>
           </div>
