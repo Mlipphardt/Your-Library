@@ -101,7 +101,11 @@ class Search extends Component {
             {this.state.results.map((book) => (
               <BookCard
                 title={book.volumeInfo.title}
-                image={book.volumeInfo.imageLinks.smallThumbnail}
+                image={
+                  book.volumeInfo.imageLinks
+                    ? book.volumeInfo.imageLinks.smallThumbnail
+                    : process.env.PUBLIC_URL + "/placeholder.png"
+                }
                 key={book.id}
                 id={book.id}
                 description={book.volumeInfo.description}
