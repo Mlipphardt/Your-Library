@@ -35,6 +35,17 @@ class Search extends Component {
     }
   };
 
+  handleSaveClick = (id) => {
+    console.log(id);
+    let savedBook = {
+      title: document.getElementById("title-" + id).textContent,
+      author: document.getElementById("author-" + id).textContent,
+      description: document.getElementById("description-" + id).textContent,
+      image: document.getElementById("image-" + id).textContent,
+    };
+    console.log(savedBook);
+  };
+
   render() {
     return (
       <div className="container">
@@ -76,6 +87,8 @@ class Search extends Component {
                 id={book.id}
                 description={book.volumeInfo.description}
                 author={book.volumeInfo.authors}
+                save={this.handleSaveClick}
+                link={book.volumeInfo.infoLink}
               />
             ))}
           </div>
