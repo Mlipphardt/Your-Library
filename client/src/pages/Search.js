@@ -98,26 +98,34 @@ class Search extends Component {
         </div>
         <div className="row">
           <div className="col-md-12">
-            {this.state.results.map((book) => (
-              <BookCard
-                title={book.volumeInfo.title}
-                image={
-                  book.volumeInfo.imageLinks
-                    ? book.volumeInfo.imageLinks.smallThumbnail
-                    : process.env.PUBLIC_URL + "/placeholder.png"
-                }
-                key={book.id}
-                id={book.id}
-                description={book.volumeInfo.description}
-                author={
-                  book.volumeInfo.authors
-                    ? book.volumeInfo.authors
-                    : "No author found."
-                }
-                save={this.handleSaveClick}
-                link={book.volumeInfo.infoLink}
-              />
-            ))}
+            {this.state.results ? (
+              this.state.results.map((book) => (
+                <BookCard
+                  title={book.volumeInfo.title}
+                  image={
+                    book.volumeInfo.imageLinks
+                      ? book.volumeInfo.imageLinks.smallThumbnail
+                      : process.env.PUBLIC_URL + "/placeholder.png"
+                  }
+                  key={book.id}
+                  id={book.id}
+                  description={book.volumeInfo.description}
+                  author={
+                    book.volumeInfo.authors
+                      ? book.volumeInfo.authors
+                      : "No author found."
+                  }
+                  save={this.handleSaveClick}
+                  link={book.volumeInfo.infoLink}
+                />
+              ))
+            ) : (
+              <div className="row">
+                <div className="col-md-6 mx-auto text-center">
+                  <h2>No results available</h2>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
