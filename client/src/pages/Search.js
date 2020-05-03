@@ -49,6 +49,21 @@ class Search extends Component {
     console.log(savedBook);
   };
 
+  saveToLibrary = (book) => {
+    API.saveBook(book).then((err, res) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log("Success?");
+      API.getAllSaved().then((err, res) => {
+        if (err) {
+          console.log(err);
+        }
+        console.log(res);
+      });
+    });
+  };
+
   render() {
     return (
       <div className="container">
