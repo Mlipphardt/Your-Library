@@ -109,7 +109,11 @@ class Search extends Component {
                 key={book.id}
                 id={book.id}
                 description={book.volumeInfo.description}
-                author={book.volumeInfo.authors}
+                author={
+                  book.volumeInfo.authors
+                    ? book.volumeInfo.authors
+                    : "No author found."
+                }
                 save={this.handleSaveClick}
                 link={book.volumeInfo.infoLink}
               />
