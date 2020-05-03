@@ -41,7 +41,10 @@ class Search extends Component {
       title: document.getElementById("title-" + id).textContent,
       author: document.getElementById("author-" + id).textContent,
       description: document.getElementById("description-" + id).textContent,
-      image: document.getElementById("image-" + id).textContent,
+      image: document.getElementById("image-" + id).getAttribute("src"),
+      link: document
+        .getElementById("view-button-" + id)
+        .getAttribute("link-to"),
     };
     console.log(savedBook);
   };
