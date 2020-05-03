@@ -30,7 +30,9 @@ function BookCard(props) {
         <div className="row">
           <div className="col-md-3">
             <p id={"author-" + props.id}>
-              {props.author.length > 1 ? props.author.join(", ") : props.author}
+              {props.author.length > 1 && Array.isArray(props.author)
+                ? props.author.join(", ")
+                : props.author}
             </p>
           </div>
           <div className="col-md-3"></div>

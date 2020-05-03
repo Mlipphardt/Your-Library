@@ -17,6 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/Mlipphardt/Your-Library.git"
   },
+  "proxy": "http://localhost:3001",
   "keywords": [],
   "author": "",
   "license": "ISC",

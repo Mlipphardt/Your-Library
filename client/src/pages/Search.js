@@ -47,6 +47,7 @@ class Search extends Component {
         .getAttribute("link-to"),
     };
     console.log(savedBook);
+    this.saveToLibrary(savedBook);
   };
 
   saveToLibrary = (book) => {
