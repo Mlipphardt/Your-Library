@@ -9,32 +9,34 @@ function BookCard(props) {
             <h3 id={"title-" + props.id}>{props.title}</h3>
           </div>
           <div className="col-md-5"></div>
-          <div className="col-md-3">
-            <button
-              id={"view-button-" + props.id}
-              link-to={props.link}
-              onClick={() => window.location.assign(props.link)}
-              className="btn bg-success view-button"
-            >
-              View
-            </button>
-            {props.save ? (
+          <div className="col-md-3 d-flex flex-column">
+            <div className="d-flex justify-content-end">
               <button
-                id={"save-button-" + props.id}
-                className="btn bg-success save-button ml-3"
-                onClick={() => props.save(props.id)}
+                id={"view-button-" + props.id}
+                link-to={props.link}
+                onClick={() => window.location.assign(props.link)}
+                className="btn bg-success view-button"
               >
-                Save
+                View
               </button>
-            ) : (
-              <button
-                id={"save-button-" + props.id}
-                className="btn bg-danger delete-button ml-3"
-                onClick={() => props.delete(props.id)}
-              >
-                Delete
-              </button>
-            )}
+              {props.save ? (
+                <button
+                  id={"save-button-" + props.id}
+                  className="btn bg-success save-button ml-3"
+                  onClick={() => props.save(props.id)}
+                >
+                  Save
+                </button>
+              ) : (
+                <button
+                  id={"save-button-" + props.id}
+                  className="btn bg-danger delete-button ml-3"
+                  onClick={() => props.delete(props.id)}
+                >
+                  Delete
+                </button>
+              )}
+            </div>
           </div>
         </div>
         <div className="row">
@@ -45,8 +47,7 @@ function BookCard(props) {
                 : props.author}
             </p>
           </div>
-          <div className="col-md-3"></div>
-          <div className="col-md-3"></div>
+          <div className="col-md-9"></div>
         </div>
       </div>
       <div className="card-body">
