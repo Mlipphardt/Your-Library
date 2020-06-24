@@ -7,6 +7,7 @@ class Search extends Component {
     query: "",
     results: [],
     saved: [],
+    currentBookshelf: {},
   };
 
   componentDidMount = () => {
@@ -21,6 +22,14 @@ class Search extends Component {
         this.setState({ results: results.data.items });
       })
       .catch((err) => console.log(err));
+  };
+
+  deleteThisBook = (id) => {
+    API.deleteSaved(id).then(() => this.loadSavedBooks());
+  };
+
+  handleDeleteClick = (id) => {
+    this.deleteThisBook(id);
   };
 
   handleInputChange = (event) => {
@@ -58,11 +67,15 @@ class Search extends Component {
       .then((results) => {
         console.log(results.data);
         let savedIds = [];
-        results.data.map((book) => {
-          savedIds.push(book.googleid);
+        let savedBooks = {};
+        results.data.forEach((book) => {
+          let googleid = book.googleid;
+          savedIds.push(googleid);
+          savedBooks[googleid] = book._id;
         });
         this.setState({
           saved: savedIds,
+          currentBookshelf: savedBooks,
         });
       })
       .catch((err) => console.log(err));
@@ -134,6 +147,12 @@ class Search extends Component {
                       : "No author found."
                   }
                   saved={this.state.saved.includes(book.id) ? true : false}
+                  savedid={
+                    this.state.currentBookshelf[book.id]
+                      ? this.state.currentBookshelf[book.id]
+                      : false
+                  }
+                  delete={this.handleDeleteClick}
                   save={this.handleSaveClick}
                   link={book.volumeInfo.infoLink}
                 />

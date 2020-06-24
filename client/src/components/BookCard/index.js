@@ -24,6 +24,7 @@ function BookCard(props) {
                   <button
                     id={"save-button-" + props.id}
                     className="btn bg-warning save-button ml-3"
+                    onClick={() => props.delete(props.savedid)}
                   >
                     Saved!
                   </button>
