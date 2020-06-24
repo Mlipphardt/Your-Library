@@ -6,10 +6,12 @@ class Search extends Component {
   state = {
     query: "",
     results: [],
+    saved: [],
   };
 
   componentDidMount = () => {
     this.getBooks("Stephen King");
+    this.loadSavedBooks();
   };
 
   getBooks = (query) => {
@@ -45,9 +47,25 @@ class Search extends Component {
       link: document
         .getElementById("view-button-" + id)
         .getAttribute("link-to"),
+      googleid: id,
     };
     console.log(savedBook);
     this.saveToLibrary(savedBook);
+  };
+
+  loadSavedBooks = () => {
+    API.getAllSaved()
+      .then((results) => {
+        console.log(results.data);
+        let savedIds = [];
+        results.data.map((book) => {
+          savedIds.push(book.googleid);
+        });
+        this.setState({
+          saved: savedIds,
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
   saveToLibrary = (book) => {
@@ -55,7 +73,7 @@ class Search extends Component {
       if (err) {
         console.log(err);
       }
-      console.log("Success?");
+      this.loadSavedBooks();
       API.getAllSaved().then((err, res) => {
         if (err) {
           console.log(err);
@@ -115,6 +133,7 @@ class Search extends Component {
                       ? book.volumeInfo.authors
                       : "No author found."
                   }
+                  saved={this.state.saved.includes(book.id) ? true : false}
                   save={this.handleSaveClick}
                   link={book.volumeInfo.infoLink}
                 />

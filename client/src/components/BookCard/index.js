@@ -20,13 +20,22 @@ function BookCard(props) {
                 View
               </button>
               {props.save ? (
-                <button
-                  id={"save-button-" + props.id}
-                  className="btn bg-success save-button ml-3"
-                  onClick={() => props.save(props.id)}
-                >
-                  Save
-                </button>
+                props.saved ? (
+                  <button
+                    id={"save-button-" + props.id}
+                    className="btn bg-warning save-button ml-3"
+                  >
+                    Saved!
+                  </button>
+                ) : (
+                  <button
+                    id={"save-button-" + props.id}
+                    className="btn bg-success save-button ml-3"
+                    onClick={() => props.save(props.id)}
+                  >
+                    Save
+                  </button>
+                )
               ) : (
                 <button
                   id={"save-button-" + props.id}
