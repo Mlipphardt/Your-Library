@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/Mlipphardt/Your-Library#readme",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "create-react-app": "^3.4.1",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
